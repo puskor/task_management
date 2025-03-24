@@ -1,3 +1,4 @@
 task_env/
 db.sqlite3
 __pycashe__
+node_modules
