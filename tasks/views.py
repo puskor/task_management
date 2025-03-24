@@ -9,6 +9,5 @@ def manager(request):
 def user(request):
     return render(request,"dashboard/user.html")
 
-
 def test(request):
-    return HttpResponse("hello")
+    return render(request,"test.html")
