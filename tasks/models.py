@@ -2,14 +2,18 @@ from django.db import models
 
 # Create your models here.
 
+class Project(models.Model):
+    name=models.CharField(max_length=50)
+    start_date=models.DateField()
 
 class Task(models.Model):
+    project=models.ForeignKey(Project,on_delete=models.CASCADE,default=1)
     title=models.CharField(max_length=150)
     description=models.TextField()
-    due_date=models.DateField(auto_now=False, auto_now_add=False)
+    due_date=models.DateField()
     is_completed=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
-    update_at=models.DateTimeField(auto_now=False)
+    update_at=models.DateTimeField(auto_now=True)
     
     
 class Task_details(models.Model):
