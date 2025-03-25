@@ -11,3 +11,6 @@ def user(request):
 
 def test(request):
     return render(request,"test.html")
+
+def create_task(request):
+    return render(request,"task_form.html")

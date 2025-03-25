@@ -1,5 +1,5 @@
 from django.urls import path
-from tasks.views import manager,user,test
+from tasks.views import manager,user,test,create_task
 
 # from tasks.templates.dashboard import dashboard
 
@@ -8,7 +8,7 @@ from tasks.views import manager,user,test
 urlpatterns = [
     path("manager/",manager),
     path("user/",user),
-    path("test/",test)
-    
+    path("test/",test),
+    path("create_task/",create_task)
     
 ]
