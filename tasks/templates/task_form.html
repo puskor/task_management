@@ -6,13 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="GET">
+    <form method="POST">
         {% csrf_token %}
-        <label for="">Title</label>
-        <input type="text" name="text">
-        <label for="">Number</label>
-        <input type="Number" name="Number">
-        <button type="submit">SUBMIT</button>
+        {{form.as_p}}
+        <button type="submit">Submit</button>
     </form>
 </body>
 </html>
