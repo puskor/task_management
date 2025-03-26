@@ -13,3 +13,15 @@ class Task_forms(forms.Form):
         super().__init__(*ergs,**kwargs)
         self.fields['employee'].choices=[(emp.id,emp.name) for emp in employees]
 
+# django model form
+
+class Task_model_form(forms.ModelForm):
+    class Meta:
+        model=Task
+        # fields='__all__'
+        fields=["title","description","due_date","employee"]
+        
+        widgets={
+            "due_date":forms.SelectDateWidget,
+            "employee":forms.CheckboxSelectMultiple
+        }
