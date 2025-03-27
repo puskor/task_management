@@ -22,6 +22,11 @@ class Task_model_form(forms.ModelForm):
         fields=["title","description","due_date","employee"]
         
         widgets={
-            "due_date":forms.SelectDateWidget,
+            "title":forms.TextInput(attrs={
+                'class':"border-red-400 border-2 w-full rounded-lg ","placeholder":"Title"}),
+            "description":forms.Textarea(attrs={
+                'class':"border-red-400 border-2 w-full rounded-lg ","placeholder":"Description"}),
+            "due_date":forms.SelectDateWidget(attrs={
+                'class':"border-red-400 border-2 rounded-lg "}),
             "employee":forms.CheckboxSelectMultiple
         }
