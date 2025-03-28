@@ -19,7 +19,7 @@ class Task_model_form(forms.ModelForm):
     class Meta:
         model=Task
         # fields='__all__'
-        fields=["title","description","due_date","employee"]
+        fields=["title","description","due_date","assigned_to"]
         
         widgets={
             "title":forms.TextInput(attrs={

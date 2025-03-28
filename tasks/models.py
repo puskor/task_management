@@ -24,7 +24,7 @@ class Task(models.Model):
         ('Completed',"Completed")
     ]
     project=models.ForeignKey(Project,on_delete=models.CASCADE,default=1)
-    employee=models.ManyToManyField(Employee)
+    assigned_to=models.ManyToManyField(Employee)
     title=models.CharField(max_length=150)
     description=models.TextField()
     due_date=models.DateField()
