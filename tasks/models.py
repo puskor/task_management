@@ -24,7 +24,7 @@ class Task(models.Model):
         ('Completed',"Completed")
     ]
     project=models.ForeignKey(Project,on_delete=models.CASCADE,default=1)
-    assigned_to=models.ManyToManyField(Employee)
+    assigned_to=models.ManyToManyField(Employee,related_name='tasks')
     title=models.CharField(max_length=150)
     description=models.TextField()
     due_date=models.DateField()
@@ -48,7 +48,7 @@ class Task_details(models.Model):
     )
     # Task is parent
     task=models.OneToOneField(Task,on_delete=models.CASCADE)
-    assignd_to=models.CharField(max_length=50)
+    assigned_to=models.CharField(max_length=50)
     priority=models.CharField(max_length=1,choices=PRIORITY_OPTIONS,default=LOW)
     nodes=models.CharField(blank=True,null=True)
     

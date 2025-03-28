@@ -11,7 +11,7 @@ class Task_forms(forms.Form):
     def __init__(self,*ergs,**kwargs):
         employees=kwargs.pop("employees" , [])
         super().__init__(*ergs,**kwargs)
-        self.fields['employee'].choices=[(emp.id,emp.name) for emp in employees]
+        self.fields['assigned_to'].choices=[(emp.id,emp.name) for emp in employees]
 
 # django model form
 
@@ -21,6 +21,10 @@ class Task_model_form(forms.ModelForm):
         # fields='__all__'
         fields=["title","description","due_date","assigned_to"]
         
+        labels={
+            "assigned_to":"Assigned to"
+        }
+        
         widgets={
             "title":forms.TextInput(attrs={
                 'class':"border-red-400 border-2 w-full rounded-lg ","placeholder":"Title"}),
@@ -28,5 +32,5 @@ class Task_model_form(forms.ModelForm):
                 'class':"border-red-400 border-2 w-full rounded-lg ","placeholder":"Description"}),
             "due_date":forms.SelectDateWidget(attrs={
                 'class':"border-red-400 border-2 rounded-lg "}),
-            "employee":forms.CheckboxSelectMultiple
+            "assigned_to":forms.CheckboxSelectMultiple
         }
