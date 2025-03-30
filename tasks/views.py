@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from tasks.forms import Task_forms,Task_model_form
 from tasks.models import Employee,Task
+from django.db.models import Q
 
 # Create your views here.
 
@@ -42,3 +43,14 @@ def create_task(request):
         
     context={"form":form}
     return render(request,"task_form.html",context)
+
+def view_task(request):
+    
+    """get and filter checking """
+    # tasks=Task.objects.all()
+    tasks=Task.objects.select_related("project").all()
+    
+    
+    # tasks=Task.objects.get(status="PENDING")
+    # tasks=Task.objects.filter(status="PENDING")
+    return render(request,"view_task.html",{"tasks":tasks})

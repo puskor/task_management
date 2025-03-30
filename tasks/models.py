@@ -47,10 +47,11 @@ class Task_details(models.Model):
         (LOW,'Low')
     )
     # Task is parent
-    task=models.OneToOneField(Task,on_delete=models.CASCADE)
+    task=models.OneToOneField(Task,on_delete=models.CASCADE,related_name="details")
     assigned_to=models.CharField(max_length=50)
     priority=models.CharField(max_length=1,choices=PRIORITY_OPTIONS,default=LOW)
     nodes=models.CharField(blank=True,null=True)
     
     def __str__(self):
         return f"Details from {self.task.title}"
+    
