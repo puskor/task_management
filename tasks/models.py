@@ -19,16 +19,16 @@ class Employee(models.Model):
 
 class Task(models.Model):
     status_choices=[
-        ('Pending',"Pending"),
-        ('In_progress',"In_progress"),
-        ('Completed',"Completed")
+        ('PENDING',"PENDING"),
+        ('IN_PROGRESS',"IN_PROGRESS"),
+        ('COMPLETED',"COMPLETED")
     ]
     project=models.ForeignKey(Project,on_delete=models.CASCADE,default=1)
     assigned_to=models.ManyToManyField(Employee,related_name='tasks')
     title=models.CharField(max_length=150)
     description=models.TextField()
     due_date=models.DateField()
-    status=models.CharField(max_length=15,choices=status_choices,default="Pending")
+    status=models.CharField(max_length=15,choices=status_choices,default="PENDING")
     is_completed=models.BooleanField(default=False)
     created_at=models.DateTimeField(auto_now_add=True)
     update_at=models.DateTimeField(auto_now=True)

@@ -1,99 +1,54 @@
-{% extends "dashboard/dashboard.html" %}
+{% extends "dashboard/dashboard.html" %} 
 {% block title %}manager{% endblock title %}
 {% block manager %}
-<div class="grid grid-cols-1 md:grid-cols-2 mx-2 bg-red-300 p-2 rounded-xl">
-    <section>
-      <div class="mx-2 bg-white p-4 rounded-xl drop-shadow-lg mb-2 divide-y">
-        <div class="text-xl">Today task</div>
-        <div class="flex justify-between py-2">
-          <div class="flex items-center gap-2">
-            <h1 class="h-2 w-2 bg-green-500 rounded-full"></h1>
-            <h1>Complete project proposal</h1>
-          </div>
-          <div><h1>High</h1></div>
-        </div>
-        <div class="flex justify-between py-2">
-          <div class="flex items-center gap-2">
-            <h1 class="h-2 w-2 bg-red-500 rounded-full"></h1>
-            <h1>Review team update</h1>
-          </div>
-          <div><h1>Good</h1></div>
-        </div>
-        <div class="flex justify-between py-2">
-          <div class="flex items-center gap-2">
-            <h1 class="h-2 w-2 bg-blue-500 rounded-full"></h1>
-            <h1>Prepare to client meeting</h1>
-          </div>
-          <div><h1>Low</h1></div>
-        </div>
-      </div>
-    </section>
-    <section>
-      <div
-        class="bg-white rounded-xl px-2 mx-2 py-2 divide-y divide-gray-100 mb-2"
-      >
-        <div class="flex justify-between px-3 mx-4`">
-          <div>Test 1</div>
-          <div>test 2</div>
-          <div>test 3</div>
-          <div>test 4</div>
-        </div>
-        <div class="flex justify-between gap-2 py-2">
-          <div class="flex items-center gap-2">
-            <h1 class="h-2 w-2 bg-blue-500 rounded-full p-1"></h1>
-            <h1>Test low task</h1>
-          </div>
-          <div><span class="bg-blue-200 rounded-xl py-1 px-1">Good</span></div>
-          <div class="flex -space-x-2 items-center">
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">gg</div>
-          </div>
-          <div>9 month age</div>
-        </div>
-        <div class="flex justify-between gap-2 py-2">
-          <div class="flex items-center gap-2">
-            <h1 class="h-2 w-2 bg-green-500 rounded-full p-1"></h1>
-            <h1>Test low task</h1>
-          </div>
-          <div><span class="bg-yellow-200 rounded-xl py-1 px-1">Low</span></div>
-          <div>  <div class="flex -space-x-2">
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-          </div></div>
-          <div>9 month age</div>
-        </div>
-        <div class="flex justify-between gap-2 py-2">
-          <div class="flex items-center gap-2">
-            <h1 class="h-2 w-2 bg-red-500 rounded-full p-1"></h1>
-            <h1>Test low task</h1>
-          </div>
-          <div><span class="bg-red-200 rounded-xl py-1 px-1">High</span></div>
-          <div>  <div class="flex -space-x-2">
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-blue-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-          </div></div>
-          <div>9 month age</div>
-        </div>
-        <div class="flex justify-between gap-2 py-2">
-          <div class="flex items-center gap-2">
-            <h1 class="h-2 w-2 bg-yellow-500 rounded-full p-1"></h1>
-            <h1>Test low task</h1>
-          </div>
-          <div><span class="bg-green-200 rounded-xl py-1 px-1">Normal</span></div>
-          <div>  <div class="flex -space-x-2">
-            <div class="bg-yellow-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-red-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-            <div class="bg-green-500 p-1 rounded-full text-white text-xs border-2 border-white ">CA</div>
-          </div></div>
-          <div>9 month age</div>
-        </div>
-      </div>
-    </section>
-  
+<!-- Task Table  -->
+<div class="bg-white rounded-xl shadow-sm m-3">
+  <div
+    class="grid grid-cols-4 p-4 border-b border-gray-100 text-sm text-gray-500"
+  >
+    <div>TASK TITLE</div>
+    <div>PRIORITY</div>
+    <div>TEAM</div>
+    <div>CREATED AT</div>
   </div>
-    
-{% endblock manager %}
+  <!-- Task Items  -->
+  <div class="divide-y divide-gray-100">
+    <!-- Task 1 -->
 
+
+    {% for task in tasks %}
+    <div class="grid grid-cols-4 gap-4 p-4 items-center">
+      <div class="flex items-center gap-2">
+        <div class="w-2 h-2 rounded-full bg-green-500"></div>
+        <span>{{task.title}}</span>
+      </div>
+      <div>
+        <span class="px-3 py-1 rounded-full bg-blue-50 text-blue-600 text-sm"
+          >Low</span
+        >
+      </div>
+      <div class="flex -space-x-2">
+        <div
+          class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white"
+        >
+          CA
+        </div>
+        <div
+          class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white"
+        >
+          JS
+        </div>
+        <div
+          class="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-sm border-2 border-white"
+        >
+          B
+        </div>
+      </div>
+      <div class="text-gray-500">9 months ago</div>
+    </div>
+    {% endfor %}
+    
+  </div>
+</div>
+
+{% endblock manager %} 

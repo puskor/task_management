@@ -2,12 +2,26 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from tasks.forms import Task_forms,Task_model_form
 from tasks.models import Employee,Task
-from django.db.models import Q
+from django.db.models import Q,Count,Max,Min,Avg
 
 # Create your views here.
 
 def manager(request):
-    return render(request,"dashboard/manager.html")
+    tasks=Task.objects.all()
+    
+    total_task=tasks.count()
+    pending_task=Task.objects.filter(status="PENDING").count()
+    completed_task=Task.objects.filter(status="COMPLETED").count()
+    to_do=Task.objects.filter(status="IN_PROGRESS").count()
+    context={
+        "tasks":tasks,
+        "total_task":total_task,
+        "pending_task":pending_task,
+        "completed_task":completed_task,
+        "to_do":to_do
+    }
+    
+    return render(request,"dashboard/manager.html",context)
 
 def user(request):
     return render(request,"dashboard/user.html")

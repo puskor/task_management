@@ -44,13 +44,15 @@
     </section>
     <!-- main task work -->
     <section>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-2 mx-2 mb-3 bg-red-300 p-3 rounded-xl">
+      <div
+        class="grid grid-cols-1 md:grid-cols-4 gap-2 mx-2 mb-3 bg-red-300 p-3 rounded-xl"
+      >
         <div class="bg-white rounded-xl p-6 drop-shadow-lg">
           <div>
-            <div><h1>Total task</h1></div>
+            <div><h1>TOTAL TASK</h1></div>
             <div class="flex justify-between">
               <div>
-                <div class="font-bold text-xl"><h1>3</h1></div>
+                <div class="font-bold text-xl"><h1>{{total_task}}</h1></div>
                 <div class="italic"><p>11 last month</p></div>
               </div>
               <button
@@ -76,10 +78,10 @@
         </div>
         <div class="bg-white rounded-xl p-6 drop-shadow-lg">
           <div>
-            <div><h1>Total task</h1></div>
+            <div><h1>COMPLETED TASK</h1></div>
             <div class="flex justify-between">
               <div>
-                <div class="font-bold text-xl"><h1>3</h1></div>
+                <div class="font-bold text-xl"><h1>{{completed_task}}</h1></div>
                 <div class="italic"><p>11 last month</p></div>
               </div>
               <button
@@ -105,10 +107,39 @@
         </div>
         <div class="bg-white rounded-xl p-6 drop-shadow-lg">
           <div>
-            <div><h1>Total task</h1></div>
+            <div><h1>TO DO TASK</h1></div>
             <div class="flex justify-between">
               <div>
-                <div class="font-bold text-xl"><h1>3</h1></div>
+                <div class="font-bold text-xl"><h1>{{to_do}}</h1></div>
+                <div class="italic"><p>11 last month</p></div>
+              </div>
+              <button
+                class="h-10 w-10 bg-rose-400 p-2 text-black flex justify-around items-center rounded-full"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.25 18 9 11.25l4.306 4.306a11.95 11.95 0 0 1 5.814-5.518l2.74-1.22m0 0-5.94-2.281m5.94 2.28-2.28 5.941"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="bg-white rounded-xl p-6 drop-shadow-lg">
+          <div>
+            <div><h1>PENDING TASK</h1></div>
+            <div class="flex justify-between">
+              <div>
+                <div class="font-bold text-xl"><h1>{{pending_task}}</h1></div>
                 <div class="italic"><p>11 last month</p></div>
               </div>
               <button
@@ -135,10 +166,7 @@
       </div>
     </section>
 
-    {% block manager %}{% endblock manager %}
-    {% block user %}{% endblock user %}
-
-
-
+    {% block manager %}{% endblock manager %} 
+    {% block user %}{% endblock user%}
   </body>
 </html>
