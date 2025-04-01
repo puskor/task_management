@@ -37,7 +37,7 @@ class Migration(migrations.Migration):
                 ('description', models.TextField()),
                 ('due_date', models.DateField()),
                 ('status', models.CharField(choices=[('PENDING', 'PENDING'), ('In_progress', 'In_progress'), ('COMPLETED', 'COMPLETED')], default='PENDING', max_length=15)),
-                ('is_COMPLETED', models.BooleanField(default=False)),
+                ('is_completed', models.BooleanField(default=False)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('update_at', models.DateTimeField(auto_now=True)),
                 ('assigned_to', models.ManyToManyField(related_name='tasks', to='tasks.employee')),
