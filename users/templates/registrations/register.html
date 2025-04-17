@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/output.css" %}">
+
+</head>
+<body>
+    <div class="w-1/2 mx-auto mt-3">
+        <h1 class="text-4xl text-center"> Welcome to our website</h1>
+        {% if messages %}
+            {% for message in messages %}
+                <div>{{message}}</div>
+            {% endfor %}
+        {% endif %}
+        <div>
+            <form action="" method="POST">
+                {% csrf_token %}
+
+                {% if forms.non_field_errors %}
+                {
+                    {% for error in forms.non_field_errors  %}
+                        {{error}}
+                    {% endfor %}
+                }
+                {% endif %}
+                
+                {% for field in form %}
+                    <p>
+                        <label for="{{field.id_for_label}}">{{field.label}}</label>
+                        {{field}}
+                        {% if field.errors %}
+                            {% for error in field.errors %}
+                                <ul>
+                                        {{error}}
+                                </ul>
+                            {% endfor %}
+
+                        {% endif %}
+                    </p>
+                {% endfor %}
+                <button type="submit" class="border-2 rounded-lg p-2 m-3 hover:text-white hover:bg-black">SIGN UP</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

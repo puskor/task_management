@@ -36,7 +36,7 @@ def manager(request):
         "tasks":tasks,
         "counts":counts
     }
-    
+
     return render(request,"dashboard/manager.html",context)
 
 def user(request):
