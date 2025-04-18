@@ -11,11 +11,13 @@
 <body>
     <div class="w-1/2 mx-auto mt-3">
         <h1 class="text-4xl text-center"> Welcome to our website</h1>
-        {% if messages %}
-            {% for message in messages %}
-                <div>{{message}}</div>
-            {% endfor %}
-        {% endif %}
+        <div>
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="px-2 py-1 if{% if message.tags == 'success' %} bg-green-500 {% endif %}">{{message}}</div>
+                {% endfor %}
+            {% endif %}
+        </div>
         <div>
             <form action="" method="POST">
                 {% csrf_token %}

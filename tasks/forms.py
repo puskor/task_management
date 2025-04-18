@@ -68,27 +68,10 @@ class Task_model_form(StyledFormMixin, forms.ModelForm):
     def __init__(self, *arg, **kwarg):
         super().__init__(*arg, **kwarg)
         self.apply_styled_widgets()
+        
 
-# class Task_model_form(forms.ModelForm):
-#     class Meta:
-#         model=Task
-#         # fields='__all__'
-#         fields=["title","description","due_date","assigned_to"]
-        
-#         labels={
-#             "assigned_to":"Assigned to"
-#         }
-        
-#         widgets={
-#             "title":forms.TextInput(attrs={
-#                 'class':"border-red-400 border-2 w-full rounded-lg ","placeholder":"Title"}),
-#             "description":forms.Textarea(attrs={
-#                 'class':"border-red-400 border-2 w-full rounded-lg ","placeholder":"Description"}),
-#             "due_date":forms.SelectDateWidget(attrs={
-#                 'class':"border-red-400 border-2 rounded-lg "}),
-#             "assigned_to":forms.CheckboxSelectMultiple
-#         }
-        
+
+
 class TaskDetailModelForm(StyledFormMixin,forms.ModelForm):
     
     class Meta:
