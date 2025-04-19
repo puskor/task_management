@@ -1,12 +1,12 @@
 from django.shortcuts import render,redirect,HttpResponse
 from django.contrib.auth.forms import UserCreationForm
-from users.forms import RegisterForm,CustomRegisterForm
+from users.forms import RegisterForm,CustomRegisterForm,AssignRoleForm
 from django.contrib import messages
 from users.forms import LoginForm
-
+from django.db.models import Prefetch
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.tokens import default_token_generator
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User,Group
 
 
 
@@ -63,3 +63,28 @@ def activate_user(request, user_id, token):
 
     except User.DoesNotExist:
         return HttpResponse('User not found')
+    
+    
+def admin_dashboard(request):
+    users=User.objects.all()
+    # users=User.objects.prefetch_related(
+    #     Prefetch('groups',queryset=Group.objects.all(),to_attr="all_groups")
+    # ).all()
+    return render(request,"admin/dashboard.html",{"users":users})
+
+
+
+def assign_role(request,user_id):
+    user=User.objects.get(id=user_id)
+    form=AssignRoleForm()
+    if request.method=="POST":
+        form=AssignRoleForm(request.POST)
+        if form.is_valid():
+            role=form.cleaned_data.get('role')
+            user.groups.clear()
+            user.groups.add(role)
+            messages.success(request, f"User {user.username} has been assigned to the {role.name} role")
+            return redirect('admin-dashboard')
+        
+    return render(request,"admin/assign_role.html",{"form":form})
+        
