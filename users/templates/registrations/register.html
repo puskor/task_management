@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="w-1/2 mx-auto mt-3">
-        <h1 class="text-4xl text-center"> Welcome to our website</h1>
+        <h1 class="text-4xl text-center"> WELCOME TO WEBSITE</h1>
         <div>
             {% if messages %}
                 {% for message in messages %}
@@ -19,33 +19,44 @@
             {% endif %}
         </div>
         <div>
-            <form action="" method="POST">
-                {% csrf_token %}
+            <div class="border-2 p-2 grid">
+                <div>
+                    <h1 class="bg-black text-white text-center p-2">SIGN UP FORM</h1>
+                </div>
+                <form action="" method="POST">
+                    {% csrf_token %}
 
-                {% if forms.non_field_errors %}
-                {
-                    {% for error in forms.non_field_errors  %}
-                        {{error}}
-                    {% endfor %}
-                }
-                {% endif %}
-                
-                {% for field in form %}
-                    <p>
-                        <label for="{{field.id_for_label}}">{{field.label}}</label>
-                        {{field}}
-                        {% if field.errors %}
-                            {% for error in field.errors %}
-                                <ul>
-                                        {{error}}
-                                </ul>
+                    <div class="p-2 grid gap-3">
+
+                        {% if forms.non_field_errors %}
+                        {
+                            {% for error in forms.non_field_errors  %}
+                                {{error}}
                             {% endfor %}
-
+                        }
                         {% endif %}
-                    </p>
-                {% endfor %}
-                <button type="submit" class="border-2 rounded-lg p-2 m-3 hover:text-white hover:bg-black">SIGN UP</button>
-            </form>
+                        
+                        {% for field in form %}
+                            <p>
+                                <label for="{{field.id_for_label}}">{{field.label}}</label>
+                                {{field}}
+                                {% if field.errors %}
+                                    {% for error in field.errors %}
+                                        <ul>
+                                                {{error}}
+                                        </ul>
+                                    {% endfor %}
+
+                                {% endif %}
+                            </p>
+                        {% endfor %}
+                        <button type="submit" class="border-2 rounded-lg p-2 m-3 hover:text-white hover:bg-black">SIGN UP</button>
+                    </div>
+                </form>
+                <a href="{% url "sign_in" %}">
+                    <button class="border-2 rounded-lg p-2 w-full mx-auto hover:text-white hover:bg-black">SIGN IN</button>
+                </a>
+            </div>
         </div>
     </div>
 </body>

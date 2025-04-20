@@ -4,9 +4,19 @@ from tasks.forms import Task_forms,Task_model_form,TaskDetailModelForm
 from tasks.models import Employee,Task
 from django.db.models import Q,Count,Max,Min,Avg
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required, permission_required,user_passes_test
+
 
 # Create your views here.
 
+def is_manager(user):
+    return user.groups.filter(name="Manager")
+
+def is_employee(user):
+    return user.groups.filter(name="Employee")
+
+
+@user_passes_test(is_manager,login_url="no_permission")
 def manager(request):
     
     # total_task=tasks.count()
@@ -39,12 +49,14 @@ def manager(request):
 
     return render(request,"dashboard/manager.html",context)
 
+@user_passes_test(is_employee,login_url="no_permission")
 def user(request):
     return render(request,"dashboard/user.html")
 
-def test(request):
-    return render(request,"test.html")
 
+
+@login_required
+@permission_required("tasks.add_task",login_url="no_permission")
 def create_task(request):
     # employee=Employee.objects.all()
     task_form=Task_model_form()
@@ -66,6 +78,8 @@ def create_task(request):
     return render(request,"task_form.html",context)
 
 
+@login_required
+@permission_required("tasks.change_task",login_url="no_permission")
 def update_task(request,id):
     # employee=Employee.objects.all()
     task=Task.objects.get(id=id)
@@ -88,6 +102,9 @@ def update_task(request,id):
     return render(request,"task_form.html",context)
 
 
+
+@login_required
+@permission_required("tasks.delete_task",login_url="no_permission")
 def delete_task(request,id):
     if request.method=="POST":
         task=Task.objects.get(id=id)
@@ -104,6 +121,8 @@ def delete_task(request,id):
 
 
 
+@login_required
+@permission_required("tasks.view_task",login_url="no_permission")
 def view_task(request):
     
     """get and filter checking """
