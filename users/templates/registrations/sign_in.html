@@ -1,4 +1,49 @@
 
+
+{% extends "base.html" %}
+{% block content %}
+<div class="h-screen">
+<div class="w-1/2 mx-auto mt-3  bg-white p-4 border-2 ">
+    <h1 class="text-3xl text-center p-2 font-bold"> WELCOME TO WEBSITE</h1>
+    <div>
+        {% if messages %}
+            {% for message in messages %}
+                <div class="px-2 py-1 if{% if message.tags == 'success' %} bg-green-500 {% endif %}">{{message}}</div>
+            {% endfor %}
+        {% endif %}
+    </div>
+    <div>
+        
+            <div class="border-2 p-2 grid">
+                <div>
+                    <h1 class="bg-black text-white text-center p-2">LOG IN FORM</h1>
+                </div>
+                <div>
+                    {% for error in errors %}
+                        {{error}}
+                    {% endfor %}
+                </div>
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="p-2 grid gap-3">
+                        <input type="text" placeholder="Enter your username" class="border-2" name="username">
+                        <input type="password" placeholder="Enter your password" class="border-2" name="password">
+                        <button type="submit" class="border-2 rounded-lg p-2 m-3 hover:text-white hover:bg-black">SIGN IN</button>
+                    </div>
+                </form>
+
+    
+
+            </div>
+    </div>
+</div>
+</div>
+{% endblock content %}
+
+
+
+
+{% comment %} 
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -10,41 +55,7 @@
 
 </head>
 <body>
-    <div class="w-1/2 mx-auto mt-3">
-        <h1 class="text-4xl text-center"> WELCOME TO WEBSITE</h1>
-        <div>
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="px-2 py-1 if{% if message.tags == 'success' %} bg-green-500 {% endif %}">{{message}}</div>
-                {% endfor %}
-            {% endif %}
-        </div>
-        <div>
-            
-                <div class="border-2 p-2 grid">
-                    <div>
-                        <h1 class="bg-black text-white text-center p-2">LOG IN FORM</h1>
-                    </div>
-                    <div>
-                        {% for error in errors %}
-                            {{error}}
-                        {% endfor %}
-                    </div>
-                    <form method="POST">
-                        {% csrf_token %}
-                        <div class="p-2 grid gap-3">
-                            <input type="text" placeholder="Enter your username" class="border-2" name="username">
-                            <input type="password" placeholder="Enter your password" class="border-2" name="password">
-                            <button type="submit" class="border-2 rounded-lg p-2 m-3 hover:text-white hover:bg-black">SIGN IN</button>
-                        </div>
-                    </form>
-
-                    <a href="{% url "sign-up" %}">
-                        <button class="border-2 rounded-lg p-2 w-full mx-auto hover:text-white hover:bg-black">SIGN UP</button>
-                    </a>
-
-                </div>
-        </div>
-    </div>
+    
 </body>
-</html>
+</html> {% endcomment %}
+

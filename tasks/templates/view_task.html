@@ -1,25 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+{% extends "home.html" %}
+{% block content %}
 <body>
-    <div>
+    <div class="w-1/2 mx-auto">
         <ul>
             {% for task in tasks %}
-                <div>
-                    <li>
-                        <p>{{ task.title }}</p>
-                        <span>{{task.project.name}}</span>
-                    </li>
-                </div>
-                
+                <li class="mb-4">
+                    <div class="font-bold items-center">{{ task.title|upper }}</div>
+                    <div class="text-gray-600">{{ task.project.name }}</div>
+                </li>
             {% endfor %}
         </ul>
-
-
     </div>
 </body>
-</html>
+
+{% endblock content %}

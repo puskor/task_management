@@ -9,7 +9,7 @@ urlpatterns = [
     path("manager/",manager,name="manager"),
     path("user/",user,name="user"),
     path("create_task/",create_task,name="create_task"),
-    path("view_task/",view_task),
+    path("view_task/",view_task,name="view_task"),
     path("update_task/<int:id>/",update_task,name="update_task"),
     path("delete_task/<int:id>/",delete_task,name="delete_task")
 ]

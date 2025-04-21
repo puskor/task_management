@@ -1,0 +1,26 @@
+
+<body>
+    <div class="bg-gray-400 h-screen">
+        <div class="text-center p-10 my-4 w-full space-y-3">
+            <a href="{% url 'admin-dashboard' %}" class="block w-full bg-white p-4 rounded-lg">
+                <button>Admin dashboard</button>
+            </a>
+            <a href="{% url 'group_list' %}" class="block w-full bg-white p-4 rounded-lg">
+                <button>Group List</button>
+            </a>
+            <a href="{% url 'create_task' %}" class="block w-full bg-white p-4 rounded-lg">
+                <button>Create Task</button>
+            </a>
+            <a href="{% url 'view_task' %}" class="block w-full bg-white p-4 rounded-lg">
+                <button>View Task</button>
+            </a>
+            <a href="{% url 'manager' %}" class="block w-full bg-white p-4 rounded-lg">
+                <button>Manager dashboard</button>
+            </a>
+            <a href="{% url 'user' %}" class="block w-full bg-white p-4 rounded-lg">
+                <button>User dashboard</button>
+            </a> 
+
+        </div>
+    </div>
+</body>

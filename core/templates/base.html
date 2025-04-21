@@ -1,5 +1,4 @@
 
-
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -14,12 +13,10 @@
 
     <!--navbar-->
     <section>
-        <div class="grid grid-cols-2 md:grid-cols-3 p-2">
+        <div class="grid grid-cols-2 md:grid-cols-3 p-2 bg-gray-300 rounded-2xl">
             <div class="md:text-center ">
-                <a href="{% url "home" %}">
-                <div class="text-2xl">TASK</div>
-                <div>Management</div>
-                </a>
+                <div class="text-2xl font-bold">TASK</div>
+                <div class="font-bold">Management</div>
             </div>
             <div class="md:grid grid-cols-4 text-center p-3 hidden">
                 <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
@@ -36,13 +33,16 @@
                 >
             </div>
             <div class="md:flex justify-center gap-3 p-2 hidden">
-                {% if user.is_authenticated %}
-                    <form action="{% url 'sign_out' %}" method="POST">
-                        {% csrf_token %}
-                        <button type="submit" class="border-2 rounded-lg p-2">logout</button>
-                    </form>
-                {% endif %}
-                
+                <div>
+                  <a href="{% url "sign-up" %}">
+                    <button class="border-2 rounded-lg p-2 font-semibold bg-white">Sign Up</button>
+                  </a>
+                </div>
+                <div>
+                  <a href="{% url "sign_in" %}">
+                    <button class="border-2 rounded-lg p-2 font-semibold bg-white">Login</button>
+                  </a>
+                </div>
             </div>
             <div class="md:hidden flex justify-center">
                 <button id="menu-toggle">
@@ -54,37 +54,45 @@
         </div>
 
         <div id="mobile-menu" class="md:hidden hidden my-4 mx-7">
-            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800 font-semibold"
               >Features</a
             >
-            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800 font-semibold"
               >Pricing</a
             >
-            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800 font-semibold"
               >About</a
             >
-            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
+            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800 font-semibold"
               >Contact</a
             >
-            {% if user.is_authenticated %}
-                <form action="{% url 'sign_out' %}" method="POST">
-                    {% csrf_token %}
-                    <button type="submit" class="block py-2 text-gray-600 hover:text-gray-800">logout</button>
-                </form>
-            {% endif %}
-            
+            <a href="{% url "sign-up" %}" class="block py-2 text-gray-600 hover:text-gray-800 font-semibold"
+              >Sign Up</a
+            >
+            <a href="{% url "sign_in" %}" class="block py-2 text-gray-600 hover:text-gray-800 font-semibold"
+              >Sign In</a
+            >
           </div>
     </section>
     <!--main-->
     <section>
+      {% if request.user.is_authenticated %}
+        {% include "sign_in.html" %}
+      {% endif %}
+    </section>
+    <!--body-->
+    <section>
+        <div class=" bg-blue-500 h-full p-2 ">
+            <div>
+              
+              {% block content %}
+                {% include "base_body.html" %}
+              {% endblock content %}
 
-        {% block content %}
-        {% include "logged.html" %}
-
-        {% endblock content %}
+            </div>
+        </div>
 
     </section>
-   
     
 </body>
 </html>

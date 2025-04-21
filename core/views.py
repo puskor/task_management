@@ -7,3 +7,6 @@ def home(request):
 
 def no_permission(request):
     return render(request,"no_permission.html")
+
+def base(request):
+    return render(request,"base.html")
