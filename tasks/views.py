@@ -16,6 +16,10 @@ def is_employee(user):
     return user.groups.filter(name="Employee")
 
 
+def dashboard(request):
+    return render(request,"dashboard/dashboard.html")
+
+
 @user_passes_test(is_manager,login_url="no_permission")
 def manager(request):
     

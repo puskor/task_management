@@ -68,34 +68,20 @@ def activate_user(request, user_id, token):
     except User.DoesNotExist:
         return HttpResponse('User not found')
     
-# @user_passes_test(is_admin,login_url="no_permission")
-# def admin_dashboard(request):
-#     # users=User.objects.all()
-#     users=User.objects.prefetch_related(
-#         Prefetch("groups",queryset=Group.objects.all(),to_attr="all_groups")
-#     )
-#     for user in users:
-#         if user.all_groups:
-#             user.group_name=user.all_groups[0].name
-#         else:
-#             user.group_name="No Group"
-    
-#     return render(request,"admin/dashboard.html",{"users":users})
-
-@user_passes_test(is_admin, login_url="no_permission")
+@user_passes_test(is_admin, login_url='no_permission')
 def admin_dashboard(request):
-    # users = User.objects.prefetch_related(
-    #     Prefetch("groups", queryset=Group.objects.all(), to_attr="all_groups")
-    # )
+    users = User.objects.prefetch_related(
+        Prefetch('groups', queryset=Group.objects.all(), to_attr='all_groups')
+    ).all()
 
-    # for user in users:
-    #     if user.all_groups:
-    #         user.group_name = user.all_groups[0].name
-    #     else:
-    #         user.group_name = "No Group"
-    users=User.objects.all()
-    
-    return render(request, "admin/dashboard.html", {"users": users})
+    print(users)
+
+    for user in users:
+        if user.all_groups:
+            user.group_name = user.all_groups[0].name
+        else:
+            user.group_name = 'No Group Assigned'
+    return render(request, 'admin/dashboard.html', {"users": users})
 
 
 

@@ -106,6 +106,6 @@ class Create_group_form(StyledFormMixin, forms.ModelForm):
         model = Group
         fields = ["name", "permissions"]
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-    #     self.fields['permissions'].queryset = Permission.objects.select_related('content_type')
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['permissions'].queryset = Permission.objects.select_related('content_type')
