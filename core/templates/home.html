@@ -1,13 +1,14 @@
 
 
-{% load static %}
+{% comment %} {% load static %} {% endcomment %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="{% static "css/output.css" %}">
+    {% comment %} <link rel="stylesheet" href="{% static "css/output.css" %}"> {% endcomment %}
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 <body>
 
@@ -22,8 +23,8 @@
                 </a>
             </div>
             <div class="md:grid grid-cols-4 text-center p-3 hidden">
-                <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
-                >Features</a
+                <a href="{% url "profile" %}" class="block py-2 text-gray-600 hover:text-gray-800"
+                >Profile</a
                 >
                 <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
                 >Pricing</a
@@ -54,8 +55,8 @@
         </div>
 
         <div id="mobile-menu" class="md:hidden hidden my-4 mx-7">
-            <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
-              >Features</a
+            <a href="{% url "profile" %}" class="block py-2 text-gray-600 hover:text-gray-800"
+              >Profile</a
             >
             <a href="#" class="block py-2 text-gray-600 hover:text-gray-800"
               >Pricing</a

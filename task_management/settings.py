@@ -145,7 +145,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'asia/Dhaka'
 
 USE_I18N = True
 
@@ -178,4 +178,6 @@ EMAIL_HOST_PASSWORD = config("EMAIL_HOST_PASSWORD")
 FRONTEND_URL = 'http://127.0.0.1:8000'
 
 
-LOGIN_URL="sign_in"
+LOGIN_URL="/users/sign_in/"
+LOGIN_REDIRECT_URL = "/home/"
+LOGOUT_REDIRECT_URL= "/"
